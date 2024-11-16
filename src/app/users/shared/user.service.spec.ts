@@ -47,7 +47,7 @@ describe('UserService', () => {
   });
 
   it('Should fetch user by id', () => {
-    service.getUser(1).subscribe((user) => {
+    service.getUserById(1).subscribe((user) => {
       expect(user).toEqual(mockUser);
     });
 
