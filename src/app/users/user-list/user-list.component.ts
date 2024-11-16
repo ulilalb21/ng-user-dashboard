@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { User } from '../shared/user.model';
 import { RouterLink } from '@angular/router';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -18,9 +19,16 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getUsers().subscribe((users) => {
-      this.users = users;
-      this.loading = false;
-    });
+    this.userService
+      .getUsers()
+      .pipe(
+        catchError(() => {
+          return of([]);
+        }),
+      )
+      .subscribe((users) => {
+        this.users = users;
+        this.loading = false;
+      });
   }
 }
