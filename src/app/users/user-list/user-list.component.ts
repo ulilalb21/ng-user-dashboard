@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../shared/user.service';
+import { User } from '../shared/user.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+  styleUrl: './user-list.component.css',
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
+  loading: Boolean = false;
+  users: User[] = [];
 
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.loading = true;
+    this.userService.getUsers().subscribe((users) => {
+      this.users = users;
+      this.loading = false;
+    });
+  }
 }
