@@ -1,1 +1,13 @@
-<p>user-details works!</p>
+<section>
+  @if (loading) {
+    <div>Loading...</div>
+  } @else {
+    @if (user) {
+      <div>{{ user.name }}</div>
+      <div>{{ user.email }}</div>
+      <div>{{ user.website }}</div>
+    } @else {
+      <div>User not found</div>
+    }
+  }
+</section>
