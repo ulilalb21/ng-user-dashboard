@@ -1,49 +1,51 @@
 <section class="mx-6 mt-6 lg:container lg:mx-auto lg:mt-24">
   <h1 class="text-4xl font-semibold">Users</h1>
   @if (loading) {
-    <div>Loading...</div>
-  } @else {
-    @if (users.length === 0) {
-      <div>No data</div>
-    } @else {
-      <table class="mt-8 w-full rounded-3xl table-auto border-1">
-        <thead
-          class="hidden text-left bg-gray-100 border-b-2 lg:table-header-group"
-        >
-          <tr>
-            <th class="py-2 px-4">ID</th>
-            <th class="py-2 px-4">Name</th>
-            <th class="py-2 px-4">Email</th>
-            <th class="py-2 px-4">Website</th>
-            <th class="py-2 px-4"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (user of users; track user.id) {
-            <tr class="border-b-1">
-              <td class="hidden py-2 px-4 lg:table-cell">
-                {{ user.id }}
-              </td>
-              <td class="hidden py-2 px-4 lg:table-cell">{{ user.name }}</td>
-              <td class="hidden py-2 px-4 lg:table-cell">{{ user.email }}</td>
-              <td class="hidden py-2 px-4 lg:table-cell">{{ user.website }}</td>
-              <td class="hidden py-2 px-4 lg:table-cell">
-                <a [routerLink]="['/users', user.id]">Detail</a>
-              </td>
-              <td class="py-3 px-5 lg:hidden">
-                <div>
-                  <a [routerLink]="['/users', user.id]" class="font-semibold">{{
-                    user.name
-                  }}</a>
-                  <div class="mt-2 text-sm text-gray-400">
-                    {{ user.email }} | {{ user.website }}
-                  </div>
+    <div class="loading">Loading...</div>
+  }
+
+  @if (!loading && users.length === 0) {
+    <div class="empty">No user data</div>
+  }
+
+  @if (!loading && users.length) {
+    <table class="mt-8 w-full rounded-3xl table-auto border-1">
+      <thead
+        class="hidden text-left bg-gray-100 border-b-2 lg:table-header-group"
+      >
+        <tr>
+          <th class="py-2 px-4">ID</th>
+          <th class="py-2 px-4">Name</th>
+          <th class="py-2 px-4">Email</th>
+          <th class="py-2 px-4">Website</th>
+          <th class="py-2 px-4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track user.id) {
+          <tr class="border-b-1 user-row">
+            <td class="hidden py-2 px-4 lg:table-cell">
+              {{ user.id }}
+            </td>
+            <td class="hidden py-2 px-4 lg:table-cell">{{ user.name }}</td>
+            <td class="hidden py-2 px-4 lg:table-cell">{{ user.email }}</td>
+            <td class="hidden py-2 px-4 lg:table-cell">{{ user.website }}</td>
+            <td class="hidden py-2 px-4 lg:table-cell">
+              <a [routerLink]="['/users', user.id]">Detail</a>
+            </td>
+            <td class="py-3 px-5 lg:hidden">
+              <div>
+                <a [routerLink]="['/users', user.id]" class="font-semibold">{{
+                  user.name
+                }}</a>
+                <div class="mt-2 text-sm text-gray-400">
+                  {{ user.email }} | {{ user.website }}
                 </div>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    }
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   }
 </section>

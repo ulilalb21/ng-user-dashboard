@@ -27,3 +27,14 @@ export interface Company {
   catchPhrase: string;
   bs: string;
 }
+
+export const mockUser: User = {
+  id: 1,
+  name: 'Foo',
+  email: 'foo@gmail.com',
+  username: 'foo',
+  phone: '08123456789',
+  website: 'https://foofoofaa.fa',
+};
+
+export const mockUsers: User[] = [mockUser];
