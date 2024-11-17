@@ -1,48 +1,48 @@
 <section class="mx-6 mt-6 lg:container lg:mx-auto lg:mt-24">
   @if (loading) {
-    <div>Loading...</div>
-  } @else {
-    @if (user) {
-      <a [routerLink]="['/users']">< Go Back</a>
-      <h1 class="my-4 text-4xl font-semibold text-center lg:text-left">
-        {{ user.name }}
-      </h1>
-      <div class="mt-6 border-t border-gray-200">
-        <dl class="divide-y divide-gray-200">
-          <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium text-gray-900 text-sm/6">Company</dt>
-            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
-              {{ user.company?.name }}
-            </dd>
-          </div>
+    <div class="loading">Loading...</div>
+  }
 
-          <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium text-gray-900 text-sm/6">Email address</dt>
-            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
-              {{ user.email }}
-            </dd>
-          </div>
-          <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium text-gray-900 text-sm/6">Website</dt>
-            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
-              {{ user.website }}
-            </dd>
-          </div>
-          <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium text-gray-900 text-sm/6">Phone number</dt>
-            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
-              {{ user.phone.split(" ")[0] }}
-            </dd>
-          </div>
-          <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium text-gray-900 text-sm/6">Address</dt>
-            <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
-              {{ user.address?.street }} {{ user.address?.suite }}
-              <div>{{ user.address?.city }} {{ user.address?.zipcode }}</div>
-            </dd>
-          </div>
-        </dl>
-      </div>
-    }
+  @if (!loading && user) {
+    <a [routerLink]="['/users']">< Go Back</a>
+    <h1 class="my-4 text-4xl font-semibold text-center lg:text-left user-name">
+      {{ user.name }}
+    </h1>
+    <div class="mt-6 border-t border-gray-200">
+      <dl class="divide-y divide-gray-200">
+        <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="font-medium text-gray-900 text-sm/6">Company</dt>
+          <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
+            {{ user.company?.name }}
+          </dd>
+        </div>
+
+        <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="font-medium text-gray-900 text-sm/6">Email address</dt>
+          <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
+            {{ user.email }}
+          </dd>
+        </div>
+        <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="font-medium text-gray-900 text-sm/6">Website</dt>
+          <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
+            {{ user.website }}
+          </dd>
+        </div>
+        <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="font-medium text-gray-900 text-sm/6">Phone number</dt>
+          <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
+            {{ user.phone.split(" ")[0] }}
+          </dd>
+        </div>
+        <div class="py-6 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="font-medium text-gray-900 text-sm/6">Address</dt>
+          <dd class="mt-1 text-gray-700 sm:col-span-2 sm:mt-0 text-sm/6">
+            {{ user.address?.street }} {{ user.address?.suite }}
+            <div>{{ user.address?.city }} {{ user.address?.zipcode }}</div>
+          </dd>
+        </div>
+      </dl>
+    </div>
   }
 </section>
