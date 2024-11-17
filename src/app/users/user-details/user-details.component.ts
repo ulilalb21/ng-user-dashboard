@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user.model';
 import { UserService } from '../shared/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css',
 })
@@ -17,6 +18,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,8 @@ export class UserDetailsComponent implements OnInit {
       .getUserById(Number(userId))
       .pipe(
         catchError(() => {
+          // if user not found, redirect to user list
+          this.router.navigate(['/users']);
           return of(undefined);
         }),
       )
